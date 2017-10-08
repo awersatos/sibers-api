@@ -16,8 +16,8 @@ framework:
     router:
         resource: '%kernel.project_dir%/app/config/routing.yml'
         strict_requirements: ~
-    form: { enabled: false }
-    csrf_protection: { enabled: false }
+    form: { enabled: true }
+    csrf_protection: { enabled: true }
     validation: { enable_annotations: true }
     serializer: { enable_annotations: true }
     templating:
@@ -90,3 +90,10 @@ api_platform:
         shared_max_age: 3600
         vary: ['Content-Type', 'Authorization']
         public: true
+
+doctrine_migrations:
+    dir_name: "%kernel.root_dir%/DoctrineMigrations"
+    namespace: Application\Migrations
+    table_name: migration_versions
+    name: Application Migrations
+    organize_migrations: false
