@@ -1,6 +1,12 @@
 api:
     resource: '.'
     type: 'api_platform'
+    prefix: /api
+
+sibers_api:
+    resource: "@SibersApiBundle/Controller/"
+    type:     annotation
+    prefix:   /
 
 app:
     resource: '@AppBundle/Action/'
