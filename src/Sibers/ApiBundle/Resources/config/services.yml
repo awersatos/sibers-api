@@ -1,3 +1,6 @@
+imports:
+#    - { resource: '@Sibers/ApiBundle/Resources/config/event_listeners.yml' }
+
 services:
 #    sibers_api.example:
 #        class: Sibers\ApiBundle\Example

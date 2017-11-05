@@ -1,0 +1,5 @@
+services:
+    sibers_api.responce_listener:
+        class: Sibers\ApiBundle\EventListener\ResponseEventListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.response }
