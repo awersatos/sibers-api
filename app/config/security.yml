@@ -12,16 +12,17 @@ security:
 
     firewalls:
         login:
-            pattern:  ^/login
+            pattern:  ^/api/login
             stateless: true
             anonymous: true
             provider: fos_userbundle
-            json_login:
-                check_path: /login_check
-                username_path: email
-                password_path: password
+            form_login:
+                check_path: /api/login_check
+                #username_path: email
+                #password_path: password
                 success_handler: lexik_jwt_authentication.handler.authentication_success
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
+                require_previous_session: false
 
         main:
             pattern:   ^/
@@ -43,6 +44,7 @@ security:
 
 
     access_control:
+        - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
