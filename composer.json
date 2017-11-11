@@ -28,6 +28,7 @@
         "guzzlehttp/guzzle": "^6.0",
         "incenteev/composer-parameter-handler": "^2.0",
         "javiereguiluz/easyadmin-bundle": "^1.17",
+        "lexik/jwt-authentication-bundle": "^2.4",
         "nelmio/cors-bundle": "^1.4",
         "phpdocumentor/reflection-docblock": "^3.0",
         "sensio/distribution-bundle": "^5.0.19",
