@@ -8,7 +8,7 @@ security:
 
     providers:
         fos_userbundle:
-            id: fos_user.user_provider.username
+            id: fos_user.user_provider.username_email
 
     firewalls:
         login:
@@ -21,6 +21,8 @@ security:
                 success_handler: lexik_jwt_authentication.handler.authentication_success
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
                 require_previous_session: false
+                username_parameter: username_email
+                password_parameter: password
 
         api:
             pattern:   ^/api

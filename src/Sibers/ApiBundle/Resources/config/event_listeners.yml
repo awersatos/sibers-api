@@ -3,3 +3,8 @@ services:
         class: Sibers\ApiBundle\EventListener\ResponseEventListener
         tags:
             - { name: kernel.event_listener, event: kernel.response }
+
+    sibers_api.request_subscriber:
+        class: Sibers\ApiBundle\EventListener\RequestEventSubscriber
+        tags:
+            - { name: kernel.event_subscriber }
