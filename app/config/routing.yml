@@ -6,6 +6,14 @@ api:
     type: 'api_platform'
     prefix: /api
 
+easy_admin_bundle:
+    resource: "@EasyAdminBundle/Controller/AdminController.php"
+    type:     annotation
+    prefix:   /admin
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
 sibers_api:
     resource: "@SibersApiBundle/Controller/"
     type:     annotation
@@ -15,10 +23,3 @@ app:
     resource: '@AppBundle/Action/'
     type: 'annotation'
 
-easy_admin_bundle:
-    resource: "@EasyAdminBundle/Controller/AdminController.php"
-    type:     annotation
-    prefix:   /admin
-
-fos_user:
-    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
