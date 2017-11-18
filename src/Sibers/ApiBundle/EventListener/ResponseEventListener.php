@@ -26,11 +26,8 @@ class ResponseEventListener
             return;
         }
 
-       /* if (!array_key_exists('hydra:member', $decoded)) {
-            return;
-        }*/
 
-        $result['status'] = 'error';
+       // $result['status'] = 'error';
         if (
             $event->getResponse()->getStatusCode() === Response::HTTP_OK
             || $event->getResponse()->getStatusCode() === Response::HTTP_CREATED
@@ -38,15 +35,13 @@ class ResponseEventListener
         {
             $result['status'] = 'success';
             $result['response'] = $decoded;
-           /* foreach ($decoded['hydra:member'] as $value) {
-                $result['response'] = $value;
-            }*/
-        } else {
+            $event->getResponse()->setContent(json_encode($result));
+        }/* else {
             foreach ($decoded['hydra:member'] as $value) {
                 $result['errors'][] = $value;
             }
-        }
+        }*/
 
-        $event->getResponse()->setContent(json_encode($result));
+
     }
 }

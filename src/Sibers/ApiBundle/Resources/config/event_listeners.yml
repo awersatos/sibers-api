@@ -8,3 +8,9 @@ services:
         class: Sibers\ApiBundle\EventListener\RequestEventSubscriber
         tags:
             - { name: kernel.event_subscriber }
+
+    sibers_api.exception_subscriber:
+        class: Sibers\ApiBundle\EventListener\ApiExceptionSubscriber
+        #arguments: ['%kernel.debug%', '@app.error_handler']
+        tags:
+            - { name: kernel.event_subscriber, event: kernel.exception }
