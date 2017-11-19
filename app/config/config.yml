@@ -3,6 +3,7 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: api_filters.yml }
+    - { resource: api_errors.yml }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -116,4 +117,7 @@ lexik_jwt_authentication:
     public_key_path:  '%jwt_public_key_path%'
     pass_phrase:      '%jwt_key_pass_phrase%'
     token_ttl:        '%jwt_token_ttl%'
+
+sibers_api:
+    errors: '%api_errors%'
 
