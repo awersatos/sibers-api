@@ -20,10 +20,10 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('sibers_api');
 
-        $rootNode
+      /*  $rootNode
             ->children()
             ->variableNode('errors')->end()
-            ->end();
+            ->end();*/
 
         return $treeBuilder;
     }

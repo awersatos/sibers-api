@@ -1,4 +1,5 @@
 services:
     sibers_api.error_handler:
         class: Sibers\ApiBundle\Service\ErrorHandler
-        arguments: ['']
+        arguments:
+            - '%api_errors%'

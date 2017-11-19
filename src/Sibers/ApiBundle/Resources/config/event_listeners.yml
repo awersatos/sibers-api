@@ -1,6 +1,7 @@
 services:
     sibers_api.responce_listener:
         class: Sibers\ApiBundle\EventListener\ResponseEventListener
+        arguments: [ '@sibers_api.error_handler']
         tags:
             - { name: kernel.event_listener, event: kernel.response }
 
@@ -11,6 +12,6 @@ services:
 
     sibers_api.exception_subscriber:
         class: Sibers\ApiBundle\EventListener\ApiExceptionSubscriber
-        #arguments: ['%kernel.debug%', '@app.error_handler']
+        arguments: [ '@sibers_api.error_handler']
         tags:
             - { name: kernel.event_subscriber, event: kernel.exception }

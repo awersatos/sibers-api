@@ -119,5 +119,5 @@ lexik_jwt_authentication:
     token_ttl:        '%jwt_token_ttl%'
 
 sibers_api:
-    errors: '%api_errors%'
+    #errors: '%api_errors%'
 

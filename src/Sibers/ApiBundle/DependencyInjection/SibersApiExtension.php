@@ -26,7 +26,7 @@ class SibersApiExtension extends Extension
         $loader->load('services.yml');
         $loader->load('event_listeners.yml');
 
-        $def = $container->getDefinition('sibers_api.error_handler');
-        $def->replaceArgument(0, $config['errors']);
+       /* $def = $container->getDefinition('sibers_api.error_handler');
+        $def->replaceArgument(0, $config['errors']);*/
     }
 }

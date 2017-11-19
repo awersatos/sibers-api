@@ -15,6 +15,16 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ApiExceptionSubscriber implements EventSubscriberInterface
 {
+    private $errorHandler;
+
+    /**
+     * ResponseEventListener constructor.
+     */
+    public function __construct($errorHandler)
+    {
+        $this->errorHandler = $errorHandler;
+    }
+
     public static function getSubscribedEvents()
     {
         return [

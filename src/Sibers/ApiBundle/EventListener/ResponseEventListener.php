@@ -13,11 +13,17 @@ use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 
 class ResponseEventListener
 {
+
+    private $errorHandler;
+
     /**
-     * Sends the Hydra header on each response.
-     *
-     * @param FilterResponseEvent $event
+     * ResponseEventListener constructor.
      */
+    public function __construct($errorHandler)
+    {
+        $this->errorHandler = $errorHandler;
+    }
+
     public function onKernelResponse(FilterResponseEvent $event)
     {
         $decoded = json_decode($event->getResponse()->getContent(), true);
