@@ -42,16 +42,6 @@ class ApiExceptionSubscriber implements EventSubscriberInterface
         $message = $e->getMessage();
         $code = $e->getCode();
 
-        $result['status'] = 'error';
-        $result['errors'][] = [
-            'code' => $code,
-            'name' => $message,
-            'description' => 'Internal error'
-        ];
-
-        $response = new Response();
-        $response->setContent(json_encode($result))->setStatusCode(404);
-        $response->headers->set('Content-Type', 'application/json');
-        $event->setResponse($response);
+        $event->setResponse($this->errorHandler->getRespose(404, 1));
     }
 }

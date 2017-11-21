@@ -4,7 +4,10 @@ parameters:
         401: []     #HTTP _UNAUTHORIZED
         402: []     #HTTP _PAYMENT_REQUIRED
         403: []     #HTTP _FORBIDDEN
-        404: []     #HTTP _NOT_FOUND
+        404:        #HTTP _NOT_FOUND
+          1:
+            name: Not found
+            description: This resourse not found!
         405: []     #HTTP _METHOD_NOT_ALLOWED
         406: []     #HTTP _NOT_ACCEPTABLE
         407: []     #HTTP _PROXY_AUTHENTICATION_REQUIRED
