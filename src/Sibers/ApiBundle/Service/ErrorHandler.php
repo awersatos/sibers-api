@@ -19,13 +19,21 @@ class ErrorHandler
         $this->errors = $errors;
     }
 
-    public function getRespose($code, $subCode)
+    public function getResponse($code, $subCode, $message = '', $decr = '')
     {
+        if (isset($this->errors[$code][$subCode])) {
+            $name = $this->errors[$code][$subCode]['name'];
+            $description = $this->errors[$code][$subCode]['description'];
+        } else {
+            $name = $message;
+            $description = $decr;
+        }
+
         $result['status'] = 'error';
         $result['errors'][] = [
             'code' => $subCode,
-            'name' => $this->errors[$code][$subCode]['name'],
-            'description' => $this->errors[$code][$subCode]['description']
+            'name' => $name,
+            'description' => $description
         ];
 
         $response = new Response();

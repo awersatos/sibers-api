@@ -41,7 +41,9 @@ class ApiExceptionSubscriber implements EventSubscriberInterface
         $e = $event->getException();
         $message = $e->getMessage();
         $code = $e->getCode();
+        $status = $e->getStatusCode();
+        $trace = $e->getTraceAsString();
 
-        $event->setResponse($this->errorHandler->getRespose(404, 1));
+        $event->setResponse($this->errorHandler->getResponse($status, $code, $message, $trace));
     }
 }
