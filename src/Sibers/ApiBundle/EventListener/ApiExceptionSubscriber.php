@@ -11,7 +11,7 @@ namespace Sibers\ApiBundle\EventListener;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
-use Symfony\Component\HttpFoundation\Response;
+use Sibers\ApiBundle\Exceptions\SibersApiException;
 
 class ApiExceptionSubscriber implements EventSubscriberInterface
 {
@@ -39,6 +39,12 @@ class ApiExceptionSubscriber implements EventSubscriberInterface
         }
 
         $e = $event->getException();
+
+        if($e instanceof SibersApiException){
+            $event->setResponse($e->getResponce());
+            return;
+        }
+
         $message = $e->getMessage();
         $code = $e->getCode();
         $status = $e->getStatusCode();

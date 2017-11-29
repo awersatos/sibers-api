@@ -9,6 +9,7 @@
 namespace Sibers\ApiBundle\Service;
 
 use Symfony\Component\HttpFoundation\Response;
+use Sibers\ApiBundle\Exceptions\SibersApiException;
 
 class ErrorHandler
 {
@@ -41,6 +42,11 @@ class ErrorHandler
         $response->headers->set('Content-Type', 'application/json');
 
         return $response;
+    }
+
+    public function createError($status, $subcode,  $message = '', $decr = '')
+    {
+        throw new SibersApiException($message, $subcode, $this->getResponse($status, $subcode, $message, $decr));
     }
 
 }
