@@ -92,6 +92,9 @@ api_platform:
         vary: ['Content-Type', 'Authorization']
         public: true
     enable_fos_user: true
+    swagger:
+         api_keys:
+             - { name: 'Authorization', type: 'header' }
 
 doctrine_migrations:
     dir_name: "%kernel.root_dir%/DoctrineMigrations"

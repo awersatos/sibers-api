@@ -3,3 +3,11 @@ services:
         class: Sibers\ApiBundle\Service\ErrorHandler
         arguments:
             - '%api_errors%'
+
+    sibers_api.swagger_decorator:
+        class: Sibers\ApiBundle\Swagger\SwaggerDecorator
+        decorates: 'api_platform.swagger.normalizer.documentation'
+        arguments: [ '@sibers_api.swagger_decorator.inner' ]
+        autoconfigure: false
+
+
