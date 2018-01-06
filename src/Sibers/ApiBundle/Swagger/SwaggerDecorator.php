@@ -25,50 +25,23 @@ final class SwaggerDecorator implements NormalizerInterface
     {
         $docs = $this->decorated->normalize($object, $format, $context);
 
-        $customDefinition = [
-            'name' => 'fields',
-            'definition' => 'Fields to remove of the outpout',
-            'default' => 'id',
-            'in' => 'query',
-        ];
+        /*
+                $definitionsIterator = $docs['definitions']->getIterator();
+                while ($definitionsIterator->valid()) {
+                    $definitionName = $definitionsIterator->key();
+                    $definitionObj = $definitionsIterator->current();
+                    $definitionObjIterator = $definitionObj->getIterator();
 
+                    while($definitionObjIterator->valid()){
 
-        // e.g. add a custom parameter
-        //$docs['paths']['/foos']['get']['parameters'][] = $customDefinition;
-
-        $pathIterator = $docs['paths']->getIterator();
-
-        while ($pathIterator->valid()) {
-            $path = $pathIterator->key();
-            $pathItems = $pathIterator->current();
-            foreach ($pathItems as $operation => $operationObj) {
-                if (in_array($operation, self::OPERATIONS)) {
-                    $operationObjIterator = $operationObj->getIterator();
-                    while ($operationObjIterator->valid()) {
-                        $operationKey = $operationObjIterator->key();
-                        if ($operationKey == 'responses') {
-                            $responses = $operationObjIterator->current();
-                            foreach ($responses as $statusCode => $responseObj) {
-                                /*$responseObjIterator = $responseObj->getIterator();
-                                while ($responseObjIterator->valid()) {
-                                    $responseKey = $responseObjIterator->key();
-                                    $responseValue = $responseObjIterator->current();
-                                    $responseObjIterator->next();
-                                }*/
-                            }
-                        }
-
-                        $operationObjIterator->next();
                     }
+
+
+                    $definitionsIterator->next();
                 }
-            }
-            $pathIterator->next();
-        }
+        */
 
-
-        // Override title
-        $docs['info']['title'] = 'My Api Foo';
-
+        $docs['paths']['/api/foos']['get']['responses'][200]['schema']['properties'] = ['status' => ['type' => 'string'], 'response' => $docs['paths']['/api/foos']['get']['responses'][200]['schema']];
         return $docs;
     }
 
