@@ -32,21 +32,21 @@ class ResponseEventListener
             return;
         }
 
-
-       // $result['status'] = 'error';
         if (
             $event->getResponse()->getStatusCode() === Response::HTTP_OK
             || $event->getResponse()->getStatusCode() === Response::HTTP_CREATED
-        )
-        {
+        ) {
             $result['status'] = 'success';
             $result['response'] = $decoded;
             $event->getResponse()->setContent(json_encode($result));
-        }/* else {
-            foreach ($decoded['hydra:member'] as $value) {
-                $result['errors'][] = $value;
-            }
-        }*/
+        } elseif (isset($decoded['status']) && $decoded['status'] == 'error') {
+            return;
+        } else {
+           $statusCode = $event->getResponse()->getStatusCode();
+           $message = isset($decoded['message']) ? $decoded['message'] : '';
+
+           $event->setResponse($this->errorHandler->getResponse($statusCode, -1, $message, 'Internal eror'));
+        }
 
 
     }

@@ -1,6 +1,11 @@
 api_login_check:
     path: /api/login_check
 
+app_main:
+    resource: '@AppBundle/Controller/'
+    type: 'annotation'
+    prefix:   /api/main
+
 api:
     resource: '.'
     type: 'api_platform'
@@ -18,6 +23,8 @@ sibers_api:
     resource: "@SibersApiBundle/Controller/"
     type:     annotation
     prefix:   /
+
+
 
 app:
     resource: '@AppBundle/Action/'
