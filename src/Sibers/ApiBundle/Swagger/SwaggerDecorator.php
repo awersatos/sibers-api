@@ -25,23 +25,34 @@ final class SwaggerDecorator implements NormalizerInterface
     {
         $docs = $this->decorated->normalize($object, $format, $context);
 
-        /*
-                $definitionsIterator = $docs['definitions']->getIterator();
-                while ($definitionsIterator->valid()) {
-                    $definitionName = $definitionsIterator->key();
-                    $definitionObj = $definitionsIterator->current();
-                    $definitionObjIterator = $definitionObj->getIterator();
+        $pathIterator = $docs['paths']->getIterator();
 
-                    while($definitionObjIterator->valid()){
+        while ($pathIterator->valid()) {
+            $path = $pathIterator->key();
+            $pathItems = $pathIterator->current();
+            foreach ($pathItems as $operation => $operationObj) {
+                if (in_array($operation, self::OPERATIONS)) {
+                    $operationObjIterator = $operationObj->getIterator();
+                    while ($operationObjIterator->valid()) {
+                        $operationKey = $operationObjIterator->key();
+                        if ($operationKey == 'responses') {
+                            $responses = $operationObjIterator->current();
+                            foreach ($responses as $statusCode => $response) {
+                                if (($statusCode == 200) || ($statusCode == 201)) {
+                                    $properties = ['status' => ['type' => 'string'], 'response' => $response['schema']];
+                                    $docs['paths'][$path][$operation]['responses'][$statusCode]['schema']['properties'] = $properties;
+                                }
+                            }
+                        }
 
+                        $operationObjIterator->next();
                     }
-
-
-                    $definitionsIterator->next();
                 }
-        */
+            }
+            $pathIterator->next();
+        }
 
-        $docs['paths']['/api/foos']['get']['responses'][200]['schema']['properties'] = ['status' => ['type' => 'string'], 'response' => $docs['paths']['/api/foos']['get']['responses'][200]['schema']];
+        //$docs['paths']['/api/foos']['get']['responses'][200]['schema']['properties'] = ['status' => ['type' => 'string'], 'response' => $docs['paths']['/api/foos']['get']['responses'][200]['schema']];
         return $docs;
     }
 
