@@ -48,7 +48,7 @@ security:
     access_control:
         - { path: ^/api/main, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api/,  roles: IS_AUTHENTICATED_ANONYMOUSLY } #TODO: change on  [ROLE_USER]
+        - { path: ^/api/,  roles: [ROLE_USER] }
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }

@@ -42,6 +42,12 @@ final class SwaggerDecorator implements NormalizerInterface
                                     $properties = ['status' => ['type' => 'string'], 'response' => $response['schema']];
                                     $docs['paths'][$path][$operation]['responses'][$statusCode]['schema'] = [];
                                     $docs['paths'][$path][$operation]['responses'][$statusCode]['schema']['properties'] = $properties;
+                                } elseif ($statusCode == 204) {
+                                    $docs['paths'][$path][$operation]['responses'][$statusCode]['schema']['properties']
+                                        = ['status' => ['type' => 'string'], 'response' => ['type' => 'array', 'items' => ['type' => 'string']]];
+                                } else {
+                                    $docs['paths'][$path][$operation]['responses'][$statusCode]['schema']['properties']
+                                        = ['status' => ['type' => 'string'], 'errors' => ['type' => 'array', 'items' => ['type' => 'array', 'items' => ['type' => 'string']]]];
                                 }
                             }
                         }
@@ -53,11 +59,6 @@ final class SwaggerDecorator implements NormalizerInterface
             $pathIterator->next();
         }
 
-        /*
-        $docs['paths']['/api/foos']['get']['responses'][200]['schema']['properties'] = ['status' => ['type' => 'string'], 'response' => $docs['paths']['/api/foos']['get']['responses'][200]['schema']];
-        $docs['paths']['/api/foos']['post']['responses'][201]['schema']['properties'] = ['status' => ['type' => 'string'], 'response' => $docs['paths']['/api/foos']['post']['responses'][201]['schema']];
-        unset($docs['paths']['/api/foos']['post']['responses'][201]['schema']['$ref']);
-*/
         return $docs;
     }
 
