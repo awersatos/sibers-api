@@ -25,8 +25,8 @@ final class SwaggerDecorator implements NormalizerInterface
     {
         $docs = $this->decorated->normalize($object, $format, $context);
 
-        $pathIterator = $docs['paths']->getIterator();
 
+        $pathIterator = $docs['paths']->getIterator();
         while ($pathIterator->valid()) {
             $path = $pathIterator->key();
             $pathItems = $pathIterator->current();
@@ -40,6 +40,7 @@ final class SwaggerDecorator implements NormalizerInterface
                             foreach ($responses as $statusCode => $response) {
                                 if (($statusCode == 200) || ($statusCode == 201)) {
                                     $properties = ['status' => ['type' => 'string'], 'response' => $response['schema']];
+                                    $docs['paths'][$path][$operation]['responses'][$statusCode]['schema'] = [];
                                     $docs['paths'][$path][$operation]['responses'][$statusCode]['schema']['properties'] = $properties;
                                 }
                             }
@@ -52,7 +53,11 @@ final class SwaggerDecorator implements NormalizerInterface
             $pathIterator->next();
         }
 
-        //$docs['paths']['/api/foos']['get']['responses'][200]['schema']['properties'] = ['status' => ['type' => 'string'], 'response' => $docs['paths']['/api/foos']['get']['responses'][200]['schema']];
+        /*
+        $docs['paths']['/api/foos']['get']['responses'][200]['schema']['properties'] = ['status' => ['type' => 'string'], 'response' => $docs['paths']['/api/foos']['get']['responses'][200]['schema']];
+        $docs['paths']['/api/foos']['post']['responses'][201]['schema']['properties'] = ['status' => ['type' => 'string'], 'response' => $docs['paths']['/api/foos']['post']['responses'][201]['schema']];
+        unset($docs['paths']['/api/foos']['post']['responses'][201]['schema']['$ref']);
+*/
         return $docs;
     }
 
