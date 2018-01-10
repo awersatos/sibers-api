@@ -1,0 +1,31 @@
+header:before {
+    background-color:#61abdb;
+
+}
+
+header #logo {
+    position:fixed;
+    top : 35px;
+    left:40px;
+    z-index:102;
+    transform:translateY(-50%);
+}
+
+header #right-logo {
+    width: 50px;
+    position:fixed;
+    top : 35px;
+    right:40px;
+    z-index:102;
+    transform:translateY(-50%);
+}
+
+header #header-title{
+    position: fixed;
+    font-size: 43px;
+    font-weight: 900;
+    top: 10px;
+    left: 500px;
+    z-index: 102;
+    color: #78bc61;
+}
