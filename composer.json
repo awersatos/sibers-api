@@ -20,7 +20,7 @@
     },
     "require": {
         "php": ">=7.0",
-        "api-platform/core": "^2.1",
+        "sibers/sibers-api-bundle": "^1.0",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/doctrine-migrations-bundle": "^1.0",
         "doctrine/orm": "^2.5",
