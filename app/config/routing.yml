@@ -19,14 +19,12 @@ easy_admin_bundle:
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
-sibers_api:
-    resource: "@SibersApiBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
-
-
 app:
     resource: '@AppBundle/Action/'
     type: 'annotation'
+
+app_controller:
+    resource: '@AppBundle/Controller/'
+    type: 'annotation'
+    prefix:   /
 
