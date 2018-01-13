@@ -1,14 +1,14 @@
 {
-    "name": "api-platform/api-platform",
+    "name": "sibers/sibers-api",
     "license": "MIT",
     "type": "project",
-    "description": "The API Platform framework",
-    "homepage": "https://api-platform.com",
+    "description": "The Sibers API framework",
+    "version" : "1.0.0",
+    "homepage": "https://github.com/awersatos/sibers-api",
     "authors": [
         {
-            "name": "Kévin Dunglas",
-            "email": "dunglas@gmail.com",
-            "homepage": "https://dunglas.fr"
+            "name": "Alexander Gordeychik",
+            "email": "sanya.gordejchik@gmail.com"
         }
     ],
     "autoload": {
@@ -79,7 +79,7 @@
             "file": "app/config/parameters.yml"
         },
         "branch-alias": {
-            "dev-master": "2.1-dev"
+            "dev-master": "1.0.x-dev"
         }
     }
 }
