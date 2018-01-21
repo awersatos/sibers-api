@@ -1,3 +1,4 @@
+# app/config/api_errors.yml
 parameters:
     api_errors:
         400: []     #HTTP_BAD_REQUEST
@@ -5,7 +6,7 @@ parameters:
         402: []     #HTTP _PAYMENT_REQUIRED
         403: []     #HTTP _FORBIDDEN
         404:        #HTTP _NOT_FOUND
-          1:
+          1: #code
             name: Not found
             description: This resourse not found!
         405: []     #HTTP _METHOD_NOT_ALLOWED
